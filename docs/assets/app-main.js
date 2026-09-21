@@ -4,7 +4,7 @@ function fallbackDashboard(){
     tabs:[
       {name:'Mapa de oportunidades',icon:'compass',tables:[{
         title:'Mapa de oportunidades · MVP',
-        description:'Fallback temporário para validar o acesso e a interface.',
+        description:'Fallback temporário para validar a interface enquanto a base completa é estabilizada.',
         columns:['Oportunidade','Tipo','Exige CNPJ?','Aceita CNPJ novo?','Melhor veículo'],
         rows:[
           ['Programa Centelha 3 – Minas Gerais','Subvenção / inovação','Pode ser constituído após aprovação','Sim','LTDA/SLU ME/EPP'],
@@ -26,37 +26,18 @@ function fallbackDashboard(){
   };
 }
 
-async function login(e){
-  e.preventDefault();
-  const user=$('#username').value.trim();
-  const pass=$('#password').value;
-  const err=$('#login-error');
-  const btn=$('#login-form .primary-button');
-  err.textContent='';
-  btn.disabled=true;
-  btn.textContent='Entrando…';
-
+async function boot(){
+  const content=$('#content');
+  if(content) content.innerHTML='<div class="empty-state"><strong>Carregando dashboard…</strong></div>';
   try{
-    if(user!=='admin.enactus' || pass!=='mvp2026'){
-      throw new Error('Usuário ou senha inválidos.');
-    }
-
-    try{
-      await loadDashboardData();
-    }catch(dataError){
-      console.error('Falha ao carregar a base completa:',dataError);
-      state.dashboard=fallbackDashboard();
-      state.radar={meta:{status:'MVP em modo fallback',sources:0},findings:[]};
-    }
-
-    state.sessionUser=user;
-    showApp();
-  }catch(ex){
-    err.textContent=ex.message||'Não foi possível entrar.';
-  }finally{
-    btn.disabled=false;
-    btn.textContent='Entrar no painel';
+    await loadDashboardData();
+  }catch(dataError){
+    console.error('Falha ao carregar a base completa:',dataError);
+    state.dashboard=fallbackDashboard();
+    state.radar={meta:{status:'MVP em modo fallback',sources:0},findings:[]};
   }
+  state.sessionUser='MVP público';
+  showApp();
 }
 
 async function refreshRadar(){
@@ -75,11 +56,6 @@ async function refreshRadar(){
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-  $('#login-form').addEventListener('submit',login);
-  $('#toggle-password').addEventListener('click',()=>{
-    const p=$('#password');
-    p.type=p.type==='password'?'text':'password';
-  });
-  $('#logout-button').addEventListener('click',()=>location.reload());
-  $('#refresh-radar').addEventListener('click',refreshRadar);
+  $('#refresh-radar')?.addEventListener('click',refreshRadar);
+  boot();
 });
