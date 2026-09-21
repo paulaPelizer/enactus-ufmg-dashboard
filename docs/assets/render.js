@@ -32,7 +32,13 @@ function buildNav(){
   all.forEach((tab,i)=>{const b=document.createElement('button');b.className='nav-button'+(i===state.activeTab?' active':'');b.innerHTML=`<span class="nav-icon">${iconFor(tab.icon)}</span><span>${escapeHTML(tab.name)}</span>`;b.addEventListener('click',()=>{state.activeTab=i;buildNav();$('#page-title').textContent=tab.name;tab.radar?renderRadar():renderSheetTab(tab)});nav.appendChild(b)})
 }
 function showApp(){
-  $('#login-view').classList.add('hidden');$('#app-view').classList.remove('hidden');$('#session-user').textContent=state.sessionUser;
-  $('#data-updated').textContent=`Base: ${fmtDate(state.dashboard.meta.generatedAt)}`;$('#app-version').textContent=`v${state.dashboard.meta.version}`;
-  buildNav();const tab=state.dashboard.tabs[state.activeTab];$('#page-title').textContent=tab.name;renderSheetTab(tab)
+  $('#login-view')?.classList.add('hidden');
+  $('#app-view')?.classList.remove('hidden');
+  const session=$('#session-user'); if(session) session.textContent=state.sessionUser||'MVP público';
+  $('#data-updated').textContent=`Base: ${fmtDate(state.dashboard.meta.generatedAt)}`;
+  $('#app-version').textContent=`v${state.dashboard.meta.version}`;
+  buildNav();
+  const tab=state.dashboard.tabs[state.activeTab];
+  $('#page-title').textContent=tab.name;
+  renderSheetTab(tab);
 }
