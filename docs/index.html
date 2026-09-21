@@ -8,9 +8,29 @@
   <link rel="stylesheet" href="assets/base.css" />
   <link rel="stylesheet" href="assets/dashboard.css" />
   <link rel="stylesheet" href="assets/responsive.css" />
+  <link rel="stylesheet" href="assets/story.css" />
 </head>
 <body>
-  <div id="app-view" class="app-shell">
+  <div id="story-view" class="story-shell">
+    <header class="story-topbar">
+      <div class="story-brand">
+        <div class="logo-placeholder">LOGO<br><strong>ENACTUS</strong></div>
+        <div>
+          <p class="eyebrow">Apresentação estratégica</p>
+          <h1>Enactus UFMG · caminhos de estruturação</h1>
+        </div>
+      </div>
+      <div class="story-actions">
+        <button id="enter-dashboard-top" class="primary-button">Ir para os dashboards</button>
+      </div>
+    </header>
+
+    <main id="story-content" class="story-content">
+      <section class="story-loading panel empty-state"><strong>Carregando apresentação…</strong></section>
+    </main>
+  </div>
+
+  <div id="app-view" class="app-shell hidden">
     <aside class="sidebar">
       <div class="sidebar-brand">
         <div class="logo-placeholder compact">LOGO<br><strong>ENACTUS</strong></div>
@@ -22,9 +42,10 @@
       <nav id="nav-tabs" class="nav-tabs"></nav>
       <div class="sidebar-footer">
         <div class="user-card">
-          <span class="avatar">M</span>
-          <div><strong>MVP público</strong><small>Sem autenticação</small></div>
+          <span class="avatar">E</span>
+          <div><strong id="session-user">Enactus UFMG</strong><small>Estudo estratégico</small></div>
         </div>
+        <button id="back-to-story" class="ghost-button">Voltar à apresentação</button>
       </div>
     </aside>
 
@@ -32,7 +53,7 @@
       <header class="topbar">
         <div>
           <p class="eyebrow">Enactus UFMG · dados estratégicos</p>
-          <h2 id="page-title">Visão geral</h2>
+          <h2 id="page-title">Dashboard</h2>
         </div>
         <div class="topbar-actions">
           <span id="data-updated" class="meta-pill">Base: —</span>
@@ -41,8 +62,8 @@
       </header>
       <div id="content" class="content"></div>
       <footer class="site-footer">
-        <span>Dashboard MVP · acesso público temporário</span>
-        <span id="app-version">v1.0.0</span>
+        <span>Dashboard MVP · apresentação pública para discussão interna do time</span>
+        <span id="app-version">v2.0.0</span>
       </footer>
     </main>
   </div>
