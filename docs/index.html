@@ -10,34 +10,7 @@
   <link rel="stylesheet" href="assets/responsive.css" />
 </head>
 <body>
-  <div id="login-view" class="login-shell">
-    <section class="login-card">
-      <div class="login-brand-row">
-        <div class="logo-placeholder">LOGO<br><strong>ENACTUS</strong></div>
-        <div class="brand-dot"></div>
-        <div class="logo-placeholder secondary">LOGO<br><strong>TIME UFMG</strong></div>
-      </div>
-      <p class="eyebrow">Painel estratégico</p>
-      <h1>Radar Enactus UFMG</h1>
-      <p class="login-copy">Oportunidades, modelos jurídicos, obrigações e monitoramento contínuo de editais em um único ambiente.</p>
-      <form id="login-form" autocomplete="off">
-        <label>Usuário
-          <input id="username" name="username" type="text" autocomplete="username" placeholder="admin.enactus" required />
-        </label>
-        <label>Senha
-          <div class="password-wrap">
-            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••••••" required />
-            <button id="toggle-password" class="icon-button" type="button" aria-label="Mostrar senha">◉</button>
-          </div>
-        </label>
-        <button class="primary-button" type="submit">Entrar no painel</button>
-        <p id="login-error" class="login-error" role="alert"></p>
-      </form>
-      <p class="security-note">Os dados do painel são armazenados criptografados. A senha desbloqueia a chave somente nesta sessão do navegador.</p>
-    </section>
-  </div>
-
-  <div id="app-view" class="app-shell hidden">
+  <div id="app-view" class="app-shell">
     <aside class="sidebar">
       <div class="sidebar-brand">
         <div class="logo-placeholder compact">LOGO<br><strong>ENACTUS</strong></div>
@@ -49,10 +22,9 @@
       <nav id="nav-tabs" class="nav-tabs"></nav>
       <div class="sidebar-footer">
         <div class="user-card">
-          <span class="avatar">A</span>
-          <div><strong id="session-user">admin.enactus</strong><small>Administrador</small></div>
+          <span class="avatar">M</span>
+          <div><strong>MVP público</strong><small>Sem autenticação</small></div>
         </div>
-        <button id="logout-button" class="ghost-button">Sair</button>
       </div>
     </aside>
 
@@ -69,7 +41,7 @@
       </header>
       <div id="content" class="content"></div>
       <footer class="site-footer">
-        <span>Dashboard independente do ChatGPT · dados criptografados no repositório</span>
+        <span>Dashboard MVP · acesso público temporário</span>
         <span id="app-version">v1.0.0</span>
       </footer>
     </main>
