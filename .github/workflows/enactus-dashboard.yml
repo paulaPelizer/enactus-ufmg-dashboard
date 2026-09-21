@@ -1,0 +1,68 @@
+name: Enactus UFMG Dashboard + Radar
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'enactus-dashboard/**'
+      - '.github/workflows/enactus-dashboard.yml'
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: enactus-pages
+  cancel-in-progress: true
+
+jobs:
+  radar-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install radar dependencies
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: pip install --disable-pip-version-check requests beautifulsoup4 cryptography
+
+      - name: Run opportunity radar
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python enactus-dashboard/scripts/radar.py
+
+      - name: Persist radar state
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "enactus-radar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/data/radar.enc.json enactus-dashboard/radar_state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(enactus): update opportunity radar"
+            git push
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./docs
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
