@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#111111" />
+  <title>Enactus UFMG · Radar de Oportunidades</title>
+  <link rel="stylesheet" href="assets/base.css" />
+  <link rel="stylesheet" href="assets/dashboard.css" />
+  <link rel="stylesheet" href="assets/responsive.css" />
+</head>
+<body>
+  <div id="login-view" class="login-shell">
+    <section class="login-card">
+      <div class="login-brand-row">
+        <div class="logo-placeholder">LOGO<br><strong>ENACTUS</strong></div>
+        <div class="brand-dot"></div>
+        <div class="logo-placeholder secondary">LOGO<br><strong>TIME UFMG</strong></div>
+      </div>
+      <p class="eyebrow">Painel estratégico</p>
+      <h1>Radar Enactus UFMG</h1>
+      <p class="login-copy">Oportunidades, modelos jurídicos, obrigações e monitoramento contínuo de editais em um único ambiente.</p>
+      <form id="login-form" autocomplete="off">
+        <label>Usuário
+          <input id="username" name="username" type="text" autocomplete="username" placeholder="admin.enactus" required />
+        </label>
+        <label>Senha
+          <div class="password-wrap">
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••••••" required />
+            <button id="toggle-password" class="icon-button" type="button" aria-label="Mostrar senha">◉</button>
+          </div>
+        </label>
+        <button class="primary-button" type="submit">Entrar no painel</button>
+        <p id="login-error" class="login-error" role="alert"></p>
+      </form>
+      <p class="security-note">Os dados do painel são armazenados criptografados. A senha desbloqueia a chave somente nesta sessão do navegador.</p>
+    </section>
+  </div>
+
+  <div id="app-view" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-placeholder compact">LOGO<br><strong>ENACTUS</strong></div>
+        <div>
+          <div class="sidebar-title">Enactus UFMG</div>
+          <div class="sidebar-subtitle">Radar & Estratégia</div>
+        </div>
+      </div>
+      <nav id="nav-tabs" class="nav-tabs"></nav>
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <span class="avatar">A</span>
+          <div><strong id="session-user">admin.enactus</strong><small>Administrador</small></div>
+        </div>
+        <button id="logout-button" class="ghost-button">Sair</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Enactus UFMG · dados estratégicos</p>
+          <h2 id="page-title">Visão geral</h2>
+        </div>
+        <div class="topbar-actions">
+          <span id="data-updated" class="meta-pill">Base: —</span>
+          <button id="refresh-radar" class="outline-button">Atualizar Radar</button>
+        </div>
+      </header>
+      <div id="content" class="content"></div>
+      <footer class="site-footer">
+        <span>Dashboard independente do ChatGPT · dados criptografados no repositório</span>
+        <span id="app-version">v1.0.0</span>
+      </footer>
+    </main>
+  </div>
+
+  <template id="table-template">
+    <section class="panel data-panel">
+      <div class="panel-header">
+        <div>
+          <h3 class="panel-title"></h3>
+          <p class="panel-description"></p>
+        </div>
+        <div class="panel-actions">
+          <button class="outline-button filters-toggle">Filtros avançados</button>
+          <button class="outline-button export-csv">Exportar CSV</button>
+        </div>
+      </div>
+      <div class="table-toolbar">
+        <div class="search-box"><span>⌕</span><input class="global-search" type="search" placeholder="Pesquisar em todas as colunas…" /></div>
+        <button class="clear-button clear-filters">Limpar filtros</button>
+        <span class="row-count"></span>
+      </div>
+      <div class="column-filters hidden"></div>
+      <div class="table-scroll"><table><thead></thead><tbody></tbody></table></div>
+    </section>
+  </template>
+
+  <script src="assets/core.js" defer></script>
+  <script src="assets/table.js" defer></script>
+  <script src="assets/render.js" defer></script>
+  <script src="assets/app-main.js" defer></script>
+</body>
+</html>
