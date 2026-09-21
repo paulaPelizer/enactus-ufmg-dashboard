@@ -1,20 +1,32 @@
-const state={auth:null,dashboard:null,radar:null,activeTab:0,sessionUser:null};
-const $=(sel,root=document)=>root.querySelector(sel);const $$=(sel,root=document)=>[...root.querySelectorAll(sel)];const enc=new TextEncoder();
+const state={dashboard:null,radar:null,activeTab:0,sessionUser:null};
+const $=(sel,root=document)=>root.querySelector(sel);const $$=(sel,root=document)=>[...root.querySelectorAll(sel)];
 function b64ToBytes(s){const bin=atob(s),out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out}
-function bytesToB64(bytes){let s='';bytes.forEach(b=>s+=String.fromCharCode(b));return btoa(s)}
 async function loadJSON(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('Falha ao carregar '+url);return r.json()}
 async function loadText(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('Falha ao carregar '+url);return r.text()}
-async function verifyLogin(username,password){
-  const auth=state.auth||await loadJSON('data/auth.json');state.auth=auth;
-  if(username.trim()!==auth.username)return false;
-  const material=await crypto.subtle.importKey('raw',enc.encode(password),{name:'PBKDF2'},false,['deriveBits']);
-  const bits=await crypto.subtle.deriveBits({name:'PBKDF2',salt:b64ToBytes(auth.kdf.salt),iterations:auth.kdf.iterations,hash:'SHA-256'},material,256);
-  return bytesToB64(new Uint8Array(bits))===auth.passwordHash;
+async function gunzipText(b64){const ds=new DecompressionStream('gzip');const stream=new Blob([b64ToBytes(b64.trim())]).stream().pipeThrough(ds);return new Response(stream).text()}
+function cleanRow(r,w){return Array.from({length:w},(_,i)=>r?.[i]??'')}
+function workbookToDashboard(raw){
+  const iconMap={'Mapa de oportunidades':'compass','Resumo':'dashboard','Modelos jurídicos':'scale','Obrigações 1º ano':'checklist','Normas e fontes':'book','LTDA por projeto':'building'};
+  const tabs=Object.entries(raw.sheets||{}).map(([name,rows])=>{
+    const segments=[];let cur=[];
+    const push=()=>{if(cur.length){segments.push(cur);cur=[]}};
+    for(const row of rows||[]){const nonempty=(row||[]).some(v=>String(v??'').trim()!=='');if(nonempty)cur.push(row);else push()}push();
+    const tables=segments.map((seg,idx)=>{
+      const width=Math.max(...seg.map(r=>r.length),1);let title=name+(segments.length>1?' · '+(idx+1):'');let start=0;
+      const first=cleanRow(seg[0],width);const firstNon=first.filter(v=>String(v??'').trim()!=='');
+      if(firstNon.length===1&&seg.length>1){title=String(firstNon[0]);start=1}
+      const hdr=cleanRow(seg[start]||[],width);const columns=hdr.map((v,i)=>String(v??'').trim()||'Coluna '+(i+1));
+      const seen={};const unique=columns.map(c=>{seen[c]=(seen[c]||0)+1;return seen[c]>1?c+' ('+seen[c]+')':c});
+      const data=seg.slice(start+1).map(r=>cleanRow(r,width));
+      return {title,description:data.length+' registros',columns:unique,rows:data};
+    });
+    return {name,icon:iconMap[name]||'dashboard',tables};
+  });
+  return {meta:{generatedAt:raw.generatedAt,version:'1.0.0',source:raw.source},tabs};
 }
 async function loadDashboardData(){
-  const manifest=await loadJSON('data/dashboard.manifest.json');
-  const chunks=await Promise.all(manifest.parts.map(n=>loadText('data/'+n+'?v='+manifest.version)));
-  state.dashboard=JSON.parse(chunks.join(''));
+  const packed=await loadText('data/dashboard.b64.txt?v=1');const raw=JSON.parse(await gunzipText(packed));
+  state.dashboard=workbookToDashboard(raw);
   try{state.radar=await loadJSON('data/radar.json?t='+Date.now())}catch(e){state.radar={meta:{status:'Aguardando primeira atualização',sources:0},findings:[]}}
 }
 function iconFor(name){const map={compass:'◈',dashboard:'▦',scale:'⚖',checklist:'✓',book:'▤',building:'▥',radar:'◎'};return map[name]||'•'}
