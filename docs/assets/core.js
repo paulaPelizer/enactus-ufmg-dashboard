@@ -25,7 +25,9 @@ function workbookToDashboard(raw){
   return {meta:{generatedAt:raw.generatedAt,version:'1.0.0',source:raw.source},tabs};
 }
 async function loadDashboardData(){
-  const packed=await loadText('data/dashboard.b64.txt?v=1');const raw=JSON.parse(await gunzipText(packed));
+  const names=['dbpart1.txt','dbpart2.txt','dbpart3.txt','dbpart4.txt','dbpart5.txt'];
+  const chunks=await Promise.all(names.map(n=>loadText('data/'+n+'?v=2')));
+  const raw=JSON.parse(await gunzipText(chunks.join('')));
   state.dashboard=workbookToDashboard(raw);
   try{state.radar=await loadJSON('data/radar.json?t='+Date.now())}catch(e){state.radar={meta:{status:'Aguardando primeira atualização',sources:0},findings:[]}}
 }
