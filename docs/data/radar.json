@@ -1,1 +1,58 @@
-{"meta":{"lastRun":null,"status":"Aguardando primeira atualização","sources":0,"newThisRun":0},"findings":[]}
+{
+  "meta": {
+    "lastRun": "2026-10-17T21:29:00Z",
+    "status": "Radar atualizado manualmente e automação ativada",
+    "sources": 10,
+    "sourcesOk": 10,
+    "newThisRun": 3,
+    "schedule": "Busca automática a cada 6 horas",
+    "note": "O botão do site recarrega os resultados já publicados; a busca nova é executada pelo GitHub Actions."
+  },
+  "findings": [
+    {
+      "foundAt": "2026-10-17T21:29:00Z",
+      "source": "FAPEMIG",
+      "title": "CHAMADA FAPEMIG-SEDE 018/2026 HUBMG GOV – Resolução de desafios públicos por meio de inovação aberta",
+      "url": "https://fapemig.br/oportunidades/chamadas-e-editais/chamada-fapemig-sede-018-2026-hubmg-gov-resolucao-de-desafios-publicos-por-meio-de-inovacao-aberta",
+      "score": 24,
+      "keywords": [
+        "chamada",
+        "inovação",
+        "startup",
+        "tecnologia",
+        "universidade"
+      ],
+      "note": "Aberta. R$ 20 milhões; empresas, startups, cooperativas e ICTs de MG. Proposta prévia até 27/11/2026 e submissão final até 09/12/2026."
+    },
+    {
+      "foundAt": "2026-10-17T21:29:00Z",
+      "source": "MDA",
+      "title": "Edital de Chamamento Público nº 02/2026 – Rede de Acesso e Desenvolvimento Rural",
+      "url": "https://www.gov.br/mda/pt-br/acesso-a-informacao/participacao-social/Editais-de-chamamento-publico/2026/edital-de-chamamento-publico-no-02-2026-seab",
+      "score": 22,
+      "keywords": [
+        "chamamento",
+        "osc",
+        "agricultura familiar",
+        "cooperativas",
+        "social"
+      ],
+      "note": "Aberto até 21/10/2026. R$ 50 milhões; participação de OSCs habilitadas no Transferegov, inclusive atuação em rede."
+    },
+    {
+      "foundAt": "2026-10-17T21:29:00Z",
+      "source": "MEMP",
+      "title": "Projeto Nacional Juntas por Elas – Edital de Seleção de Propostas nº 28/2026",
+      "url": "https://www.gov.br/memp/pt-br/assuntos/noticias/publicado-edital-para-selecionar-projetos-de-empreendedorismo-feminino-voltado-a-mulheres-em-situacao-de-vulnerabilidade",
+      "score": 16,
+      "keywords": [
+        "edital",
+        "empreendedorismo",
+        "mulheres",
+        "educação",
+        "inovação"
+      ],
+      "note": "Aberto até 19/10/2026, mas proponentes diretos são Juntas Comerciais. Relevante como oportunidade de parceria/inspiração territorial."
+    }
+  ]
+}
