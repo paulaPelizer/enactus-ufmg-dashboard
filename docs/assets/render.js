@@ -81,7 +81,9 @@ function buildNav(){
 function showApp(){
   $('#story-view')?.classList.add('hidden');$('#app-view')?.classList.remove('hidden');
   $('#session-user').textContent=state.sessionUser||'Enactus UFMG';
-  $('#data-updated').textContent=`Base: ${fmtDate(state.dashboard.meta.generatedAt)}`;$('#app-version').textContent=`v${state.dashboard.meta.version}`;
+  $('#data-updated').textContent=`Base analisada: ${fmtDate(state.dashboard.meta.generatedAt)}`;
+  const radarStamp=$('#radar-updated'); if(radarStamp) radarStamp.textContent=`Radar verificado: ${state.radar?.meta?.lastRun?fmtDate(state.radar.meta.lastRun):'—'}`;
+  $('#app-version').textContent=`v${state.dashboard.meta.version}`;
   buildNav();const tab=state.dashboard.tabs[state.activeTab];$('#page-title').textContent=tab.name;renderSheetTab(tab);
   window.scrollTo({top:0,behavior:'smooth'})
 }
