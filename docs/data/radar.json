@@ -1,14 +1,44 @@
 {
   "meta": {
-    "lastRun": "2026-10-17T21:29:00Z",
-    "status": "Radar atualizado manualmente e automação ativada",
+    "lastRun": "2026-10-17T21:55:00Z",
+    "status": "Radar atualizado com chamadas BNDES",
     "sources": 10,
     "sourcesOk": 10,
-    "newThisRun": 3,
+    "newThisRun": 5,
     "schedule": "Busca automática a cada 6 horas",
     "note": "O botão do site recarrega os resultados já publicados; a busca nova é executada pelo GitHub Actions."
   },
   "findings": [
+    {
+      "foundAt": "2026-10-17T21:55:00Z",
+      "source": "BNDES",
+      "title": "Rio Doce Participativo – Projetos estruturantes para o desenvolvimento territorial",
+      "url": "https://www.bndes.gov.br/wps/portal/site/home/transparencia/fundos-governamentais/fundo-rio-doce/chamada-rio-doce-participativo/",
+      "score": 27,
+      "keywords": [
+        "chamada",
+        "osc",
+        "desenvolvimento territorial",
+        "empreendimentos",
+        "minas gerais"
+      ],
+      "note": "Aberta até 30/12/2026. R$ 225 milhões; exige 2 anos no Eixo I ou 5 anos no Eixo II/ambos."
+    },
+    {
+      "foundAt": "2026-10-17T21:55:00Z",
+      "source": "BNDES",
+      "title": "BNDES Periferias em Rede – 6º ciclo",
+      "url": "https://agenciadenoticias.bndes.gov.br/noticia/BNDES-lanca-6-ciclo-de-chamada-para-apoio-a-projetos-nas-periferias-urbanas/",
+      "score": 24,
+      "keywords": [
+        "chamada",
+        "osc",
+        "empreendedorismo",
+        "comunidades",
+        "clima"
+      ],
+      "note": "Aberta até 04/12/2026. Proponentes: PJ privadas sem fins lucrativos; subprojetos de R$ 500 mil a R$ 3 milhões."
+    },
     {
       "foundAt": "2026-10-17T21:29:00Z",
       "source": "FAPEMIG",
