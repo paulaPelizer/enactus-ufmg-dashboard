@@ -66,11 +66,12 @@ function renderSheetTab(tab){
 }
 function renderRadar(){
   const content=$('#content');content.innerHTML='';const r=state.radar||{meta:{},findings:[]};
-  const hero=document.createElement('section');hero.className='panel';hero.innerHTML=`<div class="panel-header"><div><h3 class="panel-title">Radar automático</h3><p class="panel-description">Monitoramento contínuo de fontes e oportunidades</p></div></div>`;content.appendChild(hero);
+  const hero=document.createElement('section');hero.className='panel';hero.innerHTML=`<div class="panel-header"><div><h3 class="panel-title">Radar automático</h3><p class="panel-description">Monitoramento contínuo de fontes e oportunidades · busca automática a cada 6 horas</p></div></div>`;content.appendChild(hero);
+  if(r.meta?.note){const note=document.createElement('div');note.className='callout';note.textContent=r.meta.note;content.appendChild(note);}
   const g=document.createElement('div');g.className='kpi-grid';
-  [{label:'Última execução',value:r.meta?.lastRun?fmtDate(r.meta.lastRun):'Aguardando'},{label:'Fontes monitoradas',value:r.meta?.sources??0},{label:'Novos achados armazenados',value:r.findings?.length??0},{label:'Status',value:r.meta?.status||'Ativo'}].forEach(k=>{const d=document.createElement('div');d.className='kpi-card';d.innerHTML=`<div class="kpi-label">${escapeHTML(k.label)}</div><div class="kpi-value">${escapeHTML(k.value)}</div><div class="kpi-accent"></div>`;g.appendChild(d)});content.appendChild(g);
+  [{label:'Última execução',value:r.meta?.lastRun?fmtDate(r.meta.lastRun):'Aguardando'},{label:'Fontes monitoradas',value:r.meta?.sources??0},{label:'Novos nesta rodada',value:r.meta?.newThisRun??0},{label:'Status',value:r.meta?.status||'Ativo'}].forEach(k=>{const d=document.createElement('div');d.className='kpi-card';d.innerHTML=`<div class="kpi-label">${escapeHTML(k.label)}</div><div class="kpi-value">${escapeHTML(k.value)}</div><div class="kpi-accent"></div>`;g.appendChild(d)});content.appendChild(g);
   if(!r.findings?.length){const e=document.createElement('section');e.className='panel empty-state';e.innerHTML='<strong>Nenhum achado automático ainda</strong>O radar será preenchido após a primeira execução do monitoramento.';content.appendChild(e);return}
-  const cols=['Encontrado em','Fonte','Título','URL','Score','Palavras-chave'];const rows=r.findings.map(x=>[x.foundAt,x.source,x.title,x.url,x.score,(x.keywords||[]).join(', ')]);
+  const cols=['Encontrado em','Fonte','Título','URL','Score','Palavras-chave','Observação'];const rows=r.findings.map(x=>[x.foundAt,x.source,x.title,x.url,x.score,(x.keywords||[]).join(', '),x.note||'']);
   content.appendChild(createDataTable({title:'Achados do radar',description:'Itens detectados automaticamente nas fontes monitoradas.',columns:cols,rows}))
 }
 function buildNav(){
