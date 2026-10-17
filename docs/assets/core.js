@@ -3,8 +3,8 @@ const $=(sel,root=document)=>root.querySelector(sel);const $$=(sel,root=document
 async function loadJSON(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('Falha ao carregar '+url);return r.json()}
 async function loadText(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('Falha ao carregar '+url);return r.text()}
 async function loadDashboardData(){
-  const manifest=await loadJSON('data/site.manifest.json?v=2');
-  const chunks=await Promise.all((manifest.parts||[]).map(n=>loadText('data/'+n+'?v='+manifest.version)));
+  const manifest=await loadJSON('data/site.manifest.json?v=3');
+  const chunks=await Promise.all((manifest.parts||[]).map(n=>loadText('data/'+n+'?v='+manifest.version+'&t='+Date.now())));
   const raw=JSON.parse(chunks.join(''));
   state.dashboard={meta:raw.meta,tabs:raw.tabs};
   state.intro=raw.intro;
