@@ -1,10 +1,10 @@
 {
   "meta": {
-    "lastRun": "2026-10-19T13:06:38.139252+00:00",
+    "lastRun": "2026-10-19T22:19:15.634466+00:00",
     "status": "Radar atualizado automaticamente",
     "sources": 10,
     "sourcesOk": 10,
-    "newThisRun": 0,
+    "newThisRun": 2,
     "schedule": "A cada 6 horas",
     "sourceStatus": [
       {
@@ -32,8 +32,8 @@
         "source": "MEMP",
         "url": "https://www.gov.br/memp/pt-br/acesso-a-informacao/editais",
         "ok": true,
-        "candidates": 78,
-        "new": 0
+        "candidates": 80,
+        "new": 2
       },
       {
         "source": "MDA",
@@ -80,6 +80,26 @@
     ]
   },
   "findings": [
+    {
+      "source": "MEMP",
+      "title": "RETIFICAÇÃO",
+      "url": "https://www.gov.br/memp/pt-br/acesso-a-informacao/editais/edital-03-2026/sei_65234630_edital_33.pdf/@@display-file/file",
+      "score": 6,
+      "keywords": [
+        "edital"
+      ],
+      "foundAt": "2026-10-19T22:19:15.634466+00:00"
+    },
+    {
+      "source": "MEMP",
+      "title": "RETIFICAÇÃO - Alteração do cronograma",
+      "url": "https://www.gov.br/memp/pt-br/acesso-a-informacao/editais/28-2026/sei_65237357_edital_1.pdf/@@display-file/file",
+      "score": 6,
+      "keywords": [
+        "edital"
+      ],
+      "foundAt": "2026-10-19T22:19:15.634466+00:00"
+    },
     {
       "source": "Enactus Brasil",
       "title": "Parceiros 15 de agosto, 2025 Prêmio Alimentação em Foco 2026: Inscrições Abertas para Projetos que Transformam a Alimentação no Brasil; A Enactus Brasil e a Fundação Cargill abriram as inscrições para a 11ª edição do Prêmio Alimentação em Foco 2026. A iniciativa vai selecionar e ",
