@@ -1,10 +1,10 @@
 {
   "meta": {
-    "lastRun": "2026-10-19T22:19:15.634466+00:00",
+    "lastRun": "2026-10-20T04:44:51.726764+00:00",
     "status": "Radar atualizado automaticamente",
     "sources": 10,
     "sourcesOk": 10,
-    "newThisRun": 2,
+    "newThisRun": 0,
     "schedule": "A cada 6 horas",
     "sourceStatus": [
       {
@@ -33,7 +33,7 @@
         "url": "https://www.gov.br/memp/pt-br/acesso-a-informacao/editais",
         "ok": true,
         "candidates": 80,
-        "new": 2
+        "new": 0
       },
       {
         "source": "MDA",
