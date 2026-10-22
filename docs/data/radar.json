@@ -1,18 +1,17 @@
 {
   "meta": {
-    "lastRun": "2026-10-22T11:46:48.428352+00:00",
+    "lastRun": "2026-10-22T17:07:35.259946+00:00",
     "status": "Radar atualizado automaticamente",
     "sources": 10,
-    "sourcesOk": 9,
+    "sourcesOk": 10,
     "newThisRun": 0,
     "schedule": "A cada 6 horas",
     "sourceStatus": [
       {
         "source": "Enactus Brasil",
         "url": "https://enactus.org.br/categoria/noticias/",
-        "ok": false,
-        "error": "HTTPSConnectionPool(host='enactus.org.br', port=443): Max retries exceeded with url: /categoria/noticias/ (Caused by NewConnectionError(\"HTTPSConnection(host='enactus.org.br', port=443): Failed to establish a new connect",
-        "candidates": 0,
+        "ok": true,
+        "candidates": 4,
         "new": 0
       },
       {
