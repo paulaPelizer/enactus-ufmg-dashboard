@@ -1,85 +1,59 @@
 {
   "meta": {
-    "lastRun": "2026-10-23T17:03:10.839924+00:00",
-    "status": "Radar atualizado automaticamente",
+    "lastRun": "2026-10-23T21:03:00Z",
+    "status": "Atualização manual concluída",
     "sources": 10,
     "sourcesOk": 10,
-    "newThisRun": 0,
-    "schedule": "A cada 6 horas",
-    "sourceStatus": [
-      {
-        "source": "Enactus Brasil",
-        "url": "https://enactus.org.br/categoria/noticias/",
-        "ok": true,
-        "candidates": 4,
-        "new": 0
-      },
-      {
-        "source": "FAPEMIG",
-        "url": "https://fapemig.br/oportunidades/chamadas-e-editais",
-        "ok": true,
-        "candidates": 1,
-        "new": 0
-      },
-      {
-        "source": "Finep",
-        "url": "https://www.finep.gov.br/chamadas-publicas",
-        "ok": true,
-        "candidates": 4,
-        "new": 0
-      },
-      {
-        "source": "MEMP",
-        "url": "https://www.gov.br/memp/pt-br/acesso-a-informacao/editais",
-        "ok": true,
-        "candidates": 82,
-        "new": 0
-      },
-      {
-        "source": "MDA",
-        "url": "https://www.gov.br/mda/pt-br/acesso-a-informacao/participacao-social/Editais-de-chamamento-publico/2026",
-        "ok": true,
-        "candidates": 15,
-        "new": 0
-      },
-      {
-        "source": "Ministério das Cidades",
-        "url": "https://www.gov.br/cidades/pt-br/acesso-a-informacao/participacao-social/editais-de-chamamento-publico",
-        "ok": true,
-        "candidates": 25,
-        "new": 0
-      },
-      {
-        "source": "Economia Solidária / MTE",
-        "url": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/economia-solidaria/editais-e-chamamentos-publicos",
-        "ok": true,
-        "candidates": 30,
-        "new": 0
-      },
-      {
-        "source": "Fundo Brasil",
-        "url": "https://www.fundobrasil.org.br/nosso-trabalho/apoio-a-sociedade-civil/editais-gerais-e-especificos/",
-        "ok": true,
-        "candidates": 9,
-        "new": 0
-      },
-      {
-        "source": "Petrobras Socioambiental",
-        "url": "https://petrobras.com.br/sustentabilidade/selecoes-publicas",
-        "ok": true,
-        "candidates": 9,
-        "new": 0
-      },
-      {
-        "source": "BNDES / Negócios de Impacto",
-        "url": "https://www.gov.br/mdic/pt-br/assuntos/enimpacto/agenda",
-        "ok": true,
-        "candidates": 4,
-        "new": 0
-      }
-    ]
+    "newThisRun": 3,
+    "schedule": "Automação desativada – somente atualizações manuais",
+    "note": "Pesquisa manual realizada em 23/10/2026; nenhuma execução periódica está habilitada."
   },
   "findings": [
+    {
+      "foundAt": "2026-10-23T21:03:00Z",
+      "source": "Finep",
+      "title": "PRONINC 2026 – Programa Nacional de Incubadoras Tecnológicas de Cooperativas Populares",
+      "url": "https://www.finep.gov.br/l/1057230",
+      "score": 30,
+      "keywords": [
+        "economia solidária",
+        "ict",
+        "resíduos",
+        "agroecologia",
+        "sistemas digitais"
+      ],
+      "note": "Aberto. Cadastro institucional até 17/11/2026 e proposta até 14/01/2027. Até R$ 100 milhões; propostas de R$ 2 mi a R$ 5 mi."
+    },
+    {
+      "foundAt": "2026-10-23T21:03:00Z",
+      "source": "Finep",
+      "title": "COOPERAMAIS Tecnologia – ICT",
+      "url": "https://www.finep.gov.br/l/1060260",
+      "score": 29,
+      "keywords": [
+        "ict",
+        "agricultura familiar",
+        "economia circular",
+        "transformação digital",
+        "cooperativas"
+      ],
+      "note": "Aberto até 08/12/2026. R$ 100 milhões; projetos de R$ 3 mi a R$ 15 mi; exige parceria formal prévia de 1 ano com cooperativa elegível."
+    },
+    {
+      "foundAt": "2026-10-23T21:03:00Z",
+      "source": "Finep",
+      "title": "Finep COOPERAMAIS Brasil Tecnologias – Empresas",
+      "url": "https://www.finep.gov.br/en/l/1060720",
+      "score": 25,
+      "keywords": [
+        "empresa",
+        "agricultura familiar",
+        "cooperativas",
+        "subvenção",
+        "inovação"
+      ],
+      "note": "Aberto até 30/04/2027. R$ 120 milhões em subvenção; empresas devem desenvolver inovação em parceria com cooperativas elegíveis."
+    },
     {
       "source": "MEMP",
       "title": "LISTA DE CREDENCIADAS",
