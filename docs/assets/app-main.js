@@ -11,4 +11,4 @@ async function boot(){
   renderStory();
 }
 async function refreshRadar(){ const b=$('#refresh-radar'),old=b.textContent; b.textContent='Atualizando…'; b.disabled=true; try{ state.radar=await loadJSON('data/radar.json?t='+Date.now()); if(state.activeTab===state.dashboard.tabs.length) renderRadar(); }catch(e){ alert('Não foi possível recarregar o Radar agora.'); }finally{ b.textContent=old; b.disabled=false; } }
-document.addEventListener('DOMContentLoaded',()=>{ $('#enter-dashboard-top')?.addEventListener('click',showApp); $('#back-to-story')?.addEventListener('click',showStory); $('#refresh-radar')?.addEventListener('click',refreshRadar); boot(); });
+document.addEventListener('DOMContentLoaded',()=>{ $('#enter-dashboard-top')?.addEventListener('click',showApp); $('#back-to-story')?.addEventListener('click',showStory); boot(); });
