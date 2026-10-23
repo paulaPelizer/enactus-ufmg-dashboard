@@ -66,8 +66,8 @@ function renderSheetTab(tab){
 }
 function renderRadar(){
   const content=$('#content');content.innerHTML='';const r=state.radar||{meta:{},findings:[]};
-  const hero=document.createElement('section');hero.className='panel';hero.innerHTML=`<div class="panel-header"><div><h3 class="panel-title">Radar automático</h3><p class="panel-description">Monitoramento contínuo de fontes e oportunidades · busca automática a cada 6 horas</p></div></div>`;content.appendChild(hero);
-  if(r.meta?.note){const note=document.createElement('div');note.className='callout';note.textContent=r.meta.note;content.appendChild(note);}
+  const hero=document.createElement('section');hero.className='panel';hero.innerHTML=`<div class="panel-header"><div><h3 class="panel-title">Radar automático</h3><p class="panel-description">Registro manual de oportunidades verificadas</p></div></div>`;content.appendChild(hero);
+  
   const g=document.createElement('div');g.className='kpi-grid';
   [{label:'Última execução',value:r.meta?.lastRun?fmtDate(r.meta.lastRun):'Aguardando'},{label:'Fontes monitoradas',value:r.meta?.sources??0},{label:'Novos nesta rodada',value:r.meta?.newThisRun??0},{label:'Status',value:r.meta?.status||'Ativo'}].forEach(k=>{const d=document.createElement('div');d.className='kpi-card';d.innerHTML=`<div class="kpi-label">${escapeHTML(k.label)}</div><div class="kpi-value">${escapeHTML(k.value)}</div><div class="kpi-accent"></div>`;g.appendChild(d)});content.appendChild(g);
   if(!r.findings?.length){const e=document.createElement('section');e.className='panel empty-state';e.innerHTML='<strong>Nenhum achado automático ainda</strong>O radar será preenchido após a primeira execução do monitoramento.';content.appendChild(e);return}
@@ -82,7 +82,7 @@ function showApp(){
   $('#story-view')?.classList.add('hidden');$('#app-view')?.classList.remove('hidden');
   $('#session-user').textContent=state.sessionUser||'Enactus UFMG';
   $('#data-updated').textContent=`Base analisada: ${fmtDate(state.dashboard.meta.generatedAt)}`;
-  const radarStamp=$('#radar-updated'); if(radarStamp) radarStamp.textContent=`Radar verificado: ${state.radar?.meta?.lastRun?fmtDate(state.radar.meta.lastRun):'—'}`;
+  const radarStamp=$('#radar-updated'); if(radarStamp) radarStamp.textContent=`Radar atualizado manualmente: ${state.radar?.meta?.lastRun?fmtDate(state.radar.meta.lastRun):'—'}`;
   $('#app-version').textContent=`v${state.dashboard.meta.version}`;
   buildNav();const tab=state.dashboard.tabs[state.activeTab];$('#page-title').textContent=tab.name;renderSheetTab(tab);
   window.scrollTo({top:0,behavior:'smooth'})
